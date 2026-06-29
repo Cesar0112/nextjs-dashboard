@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
   const pathname = usePathname();
   const { replace } = useRouter();
   const [defaultValue, setDefaultValue] = useState(
@@ -19,7 +18,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
         : "",
     );
   }, [searchParams]);
+  
   const handleSearch = (term: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
     if (term) {
       params.set("query", term);
     } else {
