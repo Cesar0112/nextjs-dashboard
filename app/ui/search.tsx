@@ -8,9 +8,13 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
   const [defaultValue, setDefaultValue] = useState(
-    `${searchParams.get("query")?.toString()}`,
+    `${searchParams.get("query")?.toString()}` === "undefined"
+      ? ""
+      : `${searchParams.get("query")?.toString()}`,
   );
+
   useEffect(() => {
     setDefaultValue(
       `${searchParams.get("query")?.toString()}` !== "undefined"
@@ -18,7 +22,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         : "",
     );
   }, [searchParams]);
-  
+
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", "1");
