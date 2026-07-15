@@ -1,3 +1,7 @@
 allowBuilds:
   bcrypt: true
   sharp: true
+
+httpProxy: http://cfernandezg:01122666547@10.12.0.205:3128
+httpsProxy: http://cfernandezg:01122666547@10.12.0.205:3128
+noProxy: localhost,127.0.0.1
